@@ -1,6 +1,9 @@
+all: $(patsubst %.c,%.out,$(wildcard *.c))
 
-hello.out: hello.c
-	gcc -I../include hello.c ../build/host/lib/libmruby.a -lm -o hello.out
+.c.out:
+	gcc -I../include $< ../build/host/lib/libmruby.a -lm -o $@
 
 clean:
 	rm *.out
+
+.PHONY: all clean
