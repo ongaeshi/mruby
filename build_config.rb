@@ -1,6 +1,7 @@
 MRuby::Build.new do |conf|
   # load specific toolchain settings
-  toolchain :gcc
+  # toolchain :gcc
+  toolchain :clang
 
   # Use mrbgems
   # conf.gem 'examples/mrbgems/ruby_extension_example'
@@ -13,6 +14,10 @@ MRuby::Build.new do |conf|
 
   # include the default GEMs
   conf.gembox 'default'
+
+  # mrbgem
+  # conf.gem :git => 'https://github.com/matsumoto-r/mruby-random.git'
+  conf.gem :git => 'https://github.com/matsumoto-r/mruby-sleep.git'
 
   # C compiler settings
   # conf.cc do |cc|
@@ -73,16 +78,17 @@ MRuby::Build.new do |conf|
 end
 
 # Define cross build settings
-# MRuby::CrossBuild.new('32bit') do |conf|
-#   toolchain :gcc
-#   
-#   conf.cc.flags << "-m32"
-#   conf.linker.flags << "-m32"
-#
-#   conf.build_mrbtest_lib_only
-#   
-#   conf.gem 'examples/mrbgems/c_and_ruby_extension_example'
-#
-#   conf.test_runner.command = 'env'
-#
-# end
+MRuby::CrossBuild.new('32bit') do |conf|
+  toolchain :clang
+  conf.cc.flags << "-arch i386"
+  
+  # conf.cc.flags << "-m32"
+  # conf.linker.flags << "-m32"
+
+  # conf.build_mrbtest_lib_only
+  
+  # conf.gem 'examples/mrbgems/c_and_ruby_extension_example'
+
+  # conf.test_runner.command = 'env'
+
+end
