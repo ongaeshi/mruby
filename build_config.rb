@@ -1,7 +1,7 @@
 MRuby::Build.new do |conf|
   # load specific toolchain settings
-  # toolchain :gcc
-  toolchain :clang
+  toolchain :gcc
+  # toolchain :clang
 
   # Use mrbgems
   # conf.gem 'examples/mrbgems/ruby_extension_example'
