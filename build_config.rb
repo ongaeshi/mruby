@@ -81,6 +81,7 @@ end
 MRuby::CrossBuild.new('32bit') do |conf|
   toolchain :clang
   conf.cc.flags << "-arch i386"
+  conf.gembox 'default'
   
   # conf.cc.flags << "-m32"
   # conf.linker.flags << "-m32"
